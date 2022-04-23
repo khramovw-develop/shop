@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:shop/products/prodcts-overview.screen.dart';
-import 'package:shop/products/product-detail.screen.dart';
+import 'package:provider/provider.dart';
+import 'package:shop/pages/products/product-detail.screen.dart';
+import 'package:shop/providers/products.provider.dart';
+import 'package:shop/pages/products/products-overview.screen.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider<Products>(create: (_) => Products()),
+        ],
+        child: const MyApp(),
+      ),
+    );
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -11,54 +20,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        fontFamily: 'Lato',
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.purple,
-        ).copyWith(secondary: Colors.deepOrange),
-      ),
+      theme: buildThemeData,
       initialRoute: ProductsOverviewScreen.routeName,
       routes: {
-        ProductsOverviewScreen.routeName: (ctx) => ProductsOverviewScreen(),
+        ProductsOverviewScreen.routeName: (ctx) => const ProductsOverviewScreen(),
         ProductDetailScreen.routeName: (ctx) => const ProductDetailScreen(),
       },
     );
   }
-}
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  void _incrementCounter() {
-    setState(() {});
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            Text('You have pushed the button this many times:'),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+  ThemeData get buildThemeData {
+    return ThemeData(
+      fontFamily: 'Lato',
+      colorScheme: ColorScheme.fromSwatch(
+        primarySwatch: Colors.purple,
+      ).copyWith(secondary: Colors.deepOrange),
     );
   }
 }
