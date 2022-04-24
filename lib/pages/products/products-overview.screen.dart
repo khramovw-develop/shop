@@ -10,9 +10,7 @@ class ProductsOverviewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('MyShop'),
-      ),
+      appBar: AppBar(title: const Text('MyShop')),
       body: const GridViewProductsBuilder(),
     );
   }

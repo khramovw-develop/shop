@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/pages/products/product-item.widget.dart';
+import 'package:shop/providers/product.provider.dart';
 
 import '../../providers/products.provider.dart';
 
@@ -10,11 +11,14 @@ class GridViewProductsBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productData = Provider.of<Products>(context);
-    final products = productData.items;
+    final List<Product> products = productData.items;
     return GridView.builder(
       padding: const EdgeInsets.all(10.0),
       itemCount: products.length,
-      itemBuilder: (ctx, i) => ProductItem(product: products[i]),
+      itemBuilder: (ctx, i) => ChangeNotifierProvider<Product>.value(
+        value: products[i],
+        child: const ProductItem(),
+      ),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         childAspectRatio: 3 / 2,
