@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import '../pages/products/products.data.dart';
+import '../../pages/products/products.data.dart';
 import 'product.provider.dart';
 
 class Products with ChangeNotifier {
