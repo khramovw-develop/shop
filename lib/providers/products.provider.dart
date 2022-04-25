@@ -6,21 +6,9 @@ import 'product.provider.dart';
 class Products with ChangeNotifier {
   final List<Product> _items = productList;
 
-  var _showFavoritesOnly = false;
+  List<Product> get getFavorites => _items.where((prodItem) => prodItem.isFavorite).toList();
 
-  void showFavoritesOnly() {
-    _showFavoritesOnly = true;
-    notifyListeners();
-  }
-
-  void showAll() {
-    _showFavoritesOnly = false;
-    notifyListeners();
-  }
-
-  List<Product> get favoritesOnlyList => _items.where((prodItem) => prodItem.isFavorite).toList();
-
-  List<Product> get items => _showFavoritesOnly ? favoritesOnlyList : [..._items];
+  List<Product> get getAll => [..._items];
 
   Product findById(String id) => _items.firstWhere((prod) => prod.id == id);
 
