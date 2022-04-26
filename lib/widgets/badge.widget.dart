@@ -5,9 +5,7 @@ import 'package:provider/provider.dart';
 import '../providers/cart/cart.provider.dart';
 
 class KBadge extends StatelessWidget {
-  const KBadge({
-    Key? key,
-  }) : super(key: key);
+  const KBadge({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +19,7 @@ class KBadge extends StatelessWidget {
         showBadge: cart.itemCount > 0,
         child: IconButton(
           icon: const Icon(Icons.shopping_cart),
-          onPressed: () {},
+          onPressed: () => Navigator.of(context).pushNamed('/cart'),
         ),
       ),
     );
