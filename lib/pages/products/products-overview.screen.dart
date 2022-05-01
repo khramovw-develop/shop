@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../widgets/app-drawer.widget.dart';
 import '../../widgets/badge.widget.dart';
 import 'grid-view-products-builder.widget.dart';
 
@@ -33,6 +34,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
           const KBadge(),
         ],
       ),
+      drawer: const AppDrawer(),
       body: GridViewProductsBuilder(showFavorites: _showOnlyFavorites),
     );
   }

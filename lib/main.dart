@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/pages/Cart/cart.screen.dart';
+import 'package:shop/pages/order/orders.screen.dart';
 import 'package:shop/pages/products/product-detail.screen.dart';
 import 'package:shop/providers/cart/cart.provider.dart';
 import 'package:shop/providers/orders/orders.provider.dart';
@@ -26,11 +27,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: buildThemeData,
-      initialRoute: ProductsOverviewScreen.routeName,
+      home: const ProductsOverviewScreen(),
       routes: {
-        ProductsOverviewScreen.routeName: (ctx) => const ProductsOverviewScreen(),
         ProductDetailScreen.routeName: (ctx) => const ProductDetailScreen(),
         CartScreen.routeName: (ctx) => const CartScreen(),
+        OrdersScreen.routeName: (ctx) => const OrdersScreen(),
       },
     );
   }
