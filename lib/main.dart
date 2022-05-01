@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shop/pages/Cart/cart.screen.dart';
 import 'package:shop/pages/products/product-detail.screen.dart';
 import 'package:shop/providers/cart/cart.provider.dart';
+import 'package:shop/providers/orders/orders.provider.dart';
 import 'package:shop/providers/product/products.provider.dart';
 import 'package:shop/pages/products/products-overview.screen.dart';
 
@@ -11,6 +12,7 @@ void main() => runApp(
         providers: [
           ChangeNotifierProvider<Products>(create: (_) => Products()),
           ChangeNotifierProvider<Cart>(create: (_) => Cart()),
+          ChangeNotifierProvider<Orders>(create: (_) => Orders()),
         ],
         child: const MyApp(),
       ),
