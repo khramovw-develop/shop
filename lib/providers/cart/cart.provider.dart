@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Cart with ChangeNotifier {
-  late final Map<String, CartItem> _items = {};
+  late Map<String, CartItem> _items = {};
 
   Map<String, CartItem> get items => {..._items};
 
@@ -42,6 +42,11 @@ class Cart with ChangeNotifier {
   /* remove product from cart */
   void removeItem(String productId) {
     _items.remove(productId);
+    notifyListeners();
+  }
+
+  void clear() {
+    _items = {};
     notifyListeners();
   }
 }
