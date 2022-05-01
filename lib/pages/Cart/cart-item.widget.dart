@@ -4,27 +4,25 @@ import 'package:provider/provider.dart';
 import '../../providers/cart/cart.provider.dart';
 
 class CartItemBuilder extends StatelessWidget {
-  final cart;
+  final CartItem cart;
 
-  const CartItemBuilder({
-    Key? key,
-    required this.cart,
-  }) : super(key: key);
+  const CartItemBuilder({Key? key, required this.cart}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Dismissible build(BuildContext context) {
     return Dismissible(
-        key: ValueKey(cart.id),
-        background: Container(
-          color: Theme.of(context).errorColor,
-          child: const Icon(Icons.delete, color: Colors.white, size: 40),
-          alignment: Alignment.centerRight,
-          padding: const EdgeInsets.only(right: 20),
-          margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 4),
-        ),
-        direction: DismissDirection.endToStart,
-        onDismissed: (_) => Provider.of<Cart>(context, listen: false).removeItem(cart.productId),
-        child: buildCard());
+      key: ValueKey(cart.id),
+      background: Container(
+        color: Theme.of(context).errorColor,
+        child: const Icon(Icons.delete, color: Colors.white, size: 40),
+        alignment: Alignment.centerRight,
+        padding: const EdgeInsets.only(right: 20),
+        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 4),
+      ),
+      direction: DismissDirection.endToStart,
+      onDismissed: (_) => Provider.of<Cart>(context, listen: false).removeItem(cart.productId),
+      child: buildCard(),
+    );
   }
 
   Card buildCard() {
