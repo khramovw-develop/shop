@@ -13,6 +13,7 @@ class GridViewProductsBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     final productData = Provider.of<Products>(context);
     final List<Product> products = showFavorites ? productData.getFavorites : productData.getAll;
+
     return GridView.builder(
       padding: const EdgeInsets.all(10.0),
       itemCount: products.length,
