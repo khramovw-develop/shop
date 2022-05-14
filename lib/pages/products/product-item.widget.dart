@@ -32,11 +32,27 @@ class ProductItem extends StatelessWidget {
           ),
           title: Text(product.title, textAlign: TextAlign.center),
           trailing: Consumer<Cart>(
-              builder: (ctx, cart, child) => IconButton(
-                    icon: const Icon(Icons.shopping_cart),
-                    color: Theme.of(context).colorScheme.secondary,
-                    onPressed: () => cart.addItem(product.id, product.price, product.title),
-                  )),
+            builder: (ctx, cart, child) => IconButton(
+              icon: const Icon(Icons.shopping_cart),
+              color: Theme.of(context).colorScheme.secondary,
+              onPressed: () {
+                cart.addItem(product.id, product.price, product.title);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: const Text('Added item to cart!', style: TextStyle(fontSize: 20)),
+                    elevation: 6.0,
+                    backgroundColor: Theme.of(context).colorScheme.secondary,
+                    action: SnackBarAction(
+                      key: const Key('undo'),
+                      label: 'UNDO',
+                      textColor: Theme.of(context).colorScheme.onSecondary,
+                      onPressed: () => cart.removeSingleItem(product.id),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
         ),
       ),
     );
