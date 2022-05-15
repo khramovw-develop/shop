@@ -11,9 +11,19 @@ class EditProductScreen extends StatefulWidget {
 class _EditProductScreenState extends State<EditProductScreen> {
   final _priceFocusNode = FocusNode();
   final _descriptionFocusNode = FocusNode();
-  final _imageUrlController = TextEditingController();
   final _imageUrlFocusNode = FocusNode();
+
+  final _imageUrlController = TextEditingController();
+
   final _form = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    _priceFocusNode.dispose();
+    _descriptionFocusNode.dispose();
+    _imageUrlFocusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +38,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
             children: <Widget>[
               TextFormField(
                 decoration: const InputDecoration(labelText: 'Title'),
+                keyboardType: TextInputType.text,
                 textInputAction: TextInputAction.next,
                 onFieldSubmitted: (_) {
                   FocusScope.of(context).requestFocus(_priceFocusNode);
@@ -44,7 +55,8 @@ class _EditProductScreenState extends State<EditProductScreen> {
               ),
               TextFormField(
                 decoration: const InputDecoration(labelText: 'Description'),
-                textInputAction: TextInputAction.done,
+                maxLines: 3,
+                keyboardType: TextInputType.multiline,
                 focusNode: _descriptionFocusNode,
               ),
               ElevatedButton(
