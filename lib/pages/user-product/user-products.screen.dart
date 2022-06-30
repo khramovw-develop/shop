@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/pages/user-product/edit-product.screen.dart';
@@ -34,6 +33,7 @@ class UserProductsScreen extends StatelessWidget {
               UserProductItem(
                 title: productsData.getAll[i].title,
                 imageUrl: productsData.getAll[i].imageUrl,
+                id: productsData.getAll[i].id,
               ),
               const Divider(),
             ],
